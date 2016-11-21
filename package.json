@@ -1,0 +1,20 @@
+{
+  "name": "citizens-united",
+  "version": "1.0.0",
+  "description": "a suite of political tools",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "pierre depaz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pug": "^0.1.0",
+    "request": "^2.79.0",
+    "serve-favicon": "^2.3.0",
+    "twilio": "^2.11.0"
+  }
+}

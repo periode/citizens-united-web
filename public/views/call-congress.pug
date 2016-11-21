@@ -1,0 +1,60 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title call congress
+    link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
+    link(href='../css/skeleton/normalize.css' rel='stylesheet')
+    link(href='../css/skeleton/skeleton.css' rel='stylesheet')
+    link(href='../css/main.css' rel='stylesheet')
+    link(href='../css/call.css' rel='stylesheet')
+    script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+    script(type="text/javascript" src="../js/congress_parser.js")
+  body(onload="init()")
+    div.section
+      div.container
+        div.row
+          div(class="section twelve columns")
+            if !done
+              h3 Call A Senator
+              div(class='instructions')
+                p Contact the North Dakota U.S. Senators and let your voice be heard to the person who is supposed to represent you.
+                br
+                p 1. Enter your phone number
+                p 2. Select which office to call
+                p 3. Click on 'Put us in touch' and wait for our call!
+                br
+              div(class='form')
+                div(class='six columns caller')
+                  form(role='form' action='/broker-call', method="POST")
+                    p Your phone number
+                    input(type='text', id='phoneNumber', placeholder='e.g. 123456789', value='' name='requester')
+                    hr
+                    br
+                    p Pick a State
+                    select(id="states-list" name="state")
+                    br
+                    p Pick a Representative
+                    select(id='contacts-list' name='representative')
+                    hr
+                    br
+                    button(type='submit', class='btn btn-default') Put us in touch
+                div(class='guide six columns')
+                  h4 What to say?
+                  p You will most likely be answered to by a member of your representative's staff. She is probably an intern, or recent college graduate. Her job is to tally up all the calls per day and deliver a report to the senator the next day.
+                  br
+                  p Clearly state the issue you are calling about (for example: <i>"Hello. I am calling about the need to stop the construction of the Dakota Access Pipeline"</i>).
+                  br
+                  p It is also helps to give your name and your address, as proof of the fact that you are a constituent of North Dakota, whose concerns have priority over those of non-consituents).
+            else
+              div(class="section twelve columns")
+                p Thank you for calling!
+
+
+            // comments on call quality
+    div.section
+      div.container
+        div.row
+          div(class='twelve columns back')
+            a(href="/") powered by CU

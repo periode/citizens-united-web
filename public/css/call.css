@@ -1,0 +1,31 @@
+.instructions{
+  font-size: 1.15em;
+}
+
+.form{
+  font-size: 1em;
+  border: 3px black solid;
+  border-radius: 4px;
+  padding: 3%;
+  height: auto;
+  overflow: hidden;
+}
+
+.caller{
+  text-align: center;
+}
+
+.caller p{
+  font-size: 1.5em;
+}
+
+.guide{
+  border-left: 3px solid black;
+  padding-left: 10px;
+}
+
+.back{
+  text-align: right;
+  padding-top: 3%;
+  font-size: 1em;
+}

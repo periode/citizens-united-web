@@ -1,0 +1,86 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title citizens-united
+    link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
+    link(href='../css/skeleton/normalize.css' rel='stylesheet')
+    link(href='../css/skeleton/skeleton.css' rel='stylesheet')
+    link(href='../css/main.css' rel='stylesheet')
+    link(href='../css/main_mobile.css' rel='stylesheet')
+      script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+  body
+    div(class='section header')
+      div.container
+        div.row
+          h1(id="header" class='twelve columns') CITIZENS-UNITED
+        div.row
+          h3(class='twelve columns') A suite of software tools for political protest.
+        div.row
+          div(class='twelve columns navigation')
+            div.row
+              div(class="four columns navigationlink")
+                a(href='#projects') Tools
+              div(class="four columns navigationlink")
+                a(href='#about') About
+              div(class="four columns navigationlink")
+                a(href='#contact') Contact
+    div(class='section main')
+      div.container
+        div.row
+          div(class="twelve columns dissent")
+            p "While American democracy is imperfect, few outside the majority of this Court would have thought its flaws included a dearth of corporate money in politics."
+            br
+            p - January 21st, 2010, Justice Stevens' dissent.
+      div.container
+        div(id="projects" class="row title")
+          h3 Tools
+          hr
+          div(class="five columns project")
+            h4 <a href="/call">Call Your Senator</a>
+            h5 A phone server to reach anyone in the U.S Congress
+            p A functioning implementation of the call-congress application, using the Twilio API and the CongressAPI to broker communications between a citizen and their representative.
+            p Enter your phone number, select who you'd like to talk to, and wait for our call!
+          div(class="five columns project")
+            h4 Congress Newsletter
+            h5 under construction
+            p A light-weight, embeddable newsletter widget aimed at providing direct access to citizens of the United States to what is going on in their congress. The goal of that project is to be embedded within other websites, allowing for readers to follow-up on the issue directly at the source.
+            p The newsletter also integrates contact information (email and phone, when provided), in order to offer a direct communication channel to the legislator involved.
+          div(class="five columns project")
+            h4 European Interface
+            h5 under research
+            p A public API for the European Union. As the first endeavour for a consolidated, supra-national entity, the European faces many challenges in terms of accessibility, legitimacy and communication with its citizens.
+            p An initial step towards developing a flourishing eco-system of websites, applications, digital resources and initiatives is to be able to access its actions and decisions in an efficient, practical way, which seems rather complicated in its current state.
+          div(class="five columns project")
+            h4 Picketer
+            h5 under research
+            p A 21st century version of what a picket line can be. Picketer is a software package which is destined to be deployed on public networks, sniffing HTTP requests by users and displaying a non-obtrusive, non-invasive political message designed by a particular political group.
+            p In a world where people walk the streets with ear plugs, public wifi can be the new public sphere.
+      div.container
+        a(href="#header" class="top") top
+        div(id="about" class="row title")
+          h3 About
+          hr
+          div(class="twelve columns description")
+            p Citizens-United is a collection of software tools for political action and/or protest.
+            br
+            h5 What happens when contacting the government is easier than sharing something on Facebook?
+            p Most of the means to protest today are either highly legalized and embbeded in an obfuscating online bureaucracy, therefore rendered inoffensive to both the authorities and the greater public, or completely devoid of a structured political discourse. Social media, online petitioning, online debates and physical occupation of now defunct public spheres seems to be what we gravitate the most towards.
+            p Some of the tools developed here already exist. However, I believe they benefit from a cleaner, more seamless integration into the commercial set of aesthetic and interaction rules that has already been carved in our brains by major actors, such as Twitter, Facebook and Change.org, and to which the public is now used to.
+            p The goal of these projects is to apply best practices of private, apolitical software and put those in service of political education, activism and disruption, making it as easy as possible for citizens to be informed and take action, and making it as enjoyable as the CFAA allows.
+            p Citizens-United is not to be confused with the non-profit association which has a history of enabling the Supreme Court.
+      div.container
+        a(href="#header" class="top") top
+        div(id="contact", class="row title")
+          h4 Contact
+          hr
+          p If you are interested in updates, sign up here -
+          br
+          form(action="/email-subscription" method="POST")
+            input(type="text" name="name" placeholder="you")
+            br
+            input(type="email" name="email" placeholder="you@life.com")
+            br
+            button(type="submit") submit
+          p If you want to contact me directly, you can do so at this <a href="mailto:pierre.depaz@gmail.com">e-mail</a> address.

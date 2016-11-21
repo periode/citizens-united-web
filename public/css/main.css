@@ -1,0 +1,115 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  color: rgb(20, 20, 20);
+}
+
+h5{
+  font-weight: lighter;
+  color: #666;
+}
+
+p{
+  margin-bottom: 0;
+}
+
+hr{
+  height: 1px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.header{
+  margin-top: 5%;
+}
+
+.top{
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  float: right;
+}
+
+.top:hover{
+
+  color: black;
+  background-color: white;
+}
+
+.dissent{
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #444;
+  font-style: italic;
+  font-size: 1em;
+  line-height: 2em;
+  font-weight: lighter;
+}
+
+.description{
+  font-size: 1.25em;
+  line-height: 2em;
+}
+
+.navigation a{
+  font-size: 1.5em;
+  float: left;
+  text-align: left;
+}
+
+.navigationlink{
+  background-color: black;
+  text-align: center;
+}
+
+.navigationlink a{
+  padding-left: 1%;
+  padding-right: 1%;
+  color: white;
+}
+
+.navigationlink a:hover{
+  background-color: white;
+  color: rgb(20, 20, 20);
+}
+
+a{
+  color: rgb(150, 0, 0);
+}
+
+a:hover{
+  color: black;
+}
+
+.main{
+  text-align: justify;
+}
+
+.main .row{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.title{
+  margin-bottom: 2%;
+}
+
+#projects{
+  margin: 0;
+  float: left;
+  margin-bottom: 3%;
+}
+
+.project{
+  margin-top: 1%;
+  min-height: 20%;
+  /*background-color: rgb(250, 250, 250);*/
+  padding: 10px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+#about{
+  font-size: 0.8em;
+}
