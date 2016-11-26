@@ -1,5 +1,13 @@
+#callCongress{
+    margin-top: 4rem;
+}
+
 .instructions{
   font-size: 1.15em;
+}
+
+ol li{
+  font-family: Georgia,Times,"Times New Roman",serif;
 }
 
 .form{
@@ -11,8 +19,18 @@
   overflow: hidden;
 }
 
+
+#callCongress h6{
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+
 .caller{
-  text-align: center;
+  text-align: left;
+  background-color: #eee;
+  padding: 4rem;
+  margin-bottom: 2rem;
 }
 
 .caller p{
@@ -20,12 +38,26 @@
 }
 
 .guide{
-  border-left: 3px solid black;
   padding-left: 10px;
 }
 
 .back{
   text-align: right;
   padding-top: 3%;
-  font-size: 1em;
+  font-size: 1rem;
+}
+.back a:hover{
+  border: 0;
+}
+
+#callCongress button, #callCongress .button {
+  height: 6rem;
+  background-color: white;
+  -webkit-transition: background-color 0.5s; /* Safari */
+  transition: background-color 0.5s;
+}
+
+#callCongress button:hover, #callCongress .button:hover {
+  height: 6rem;
+  background-color: green;
 }
