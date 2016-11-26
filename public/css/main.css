@@ -34,6 +34,31 @@ hr{
   background-color: white;
 }
 
+.navbar{
+  z-index: 900;
+  top: 0;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  background-color: #eee;
+  margin: 0 0 3rem 0;
+}
+.navbar h1{
+  color: black;
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom:0;
+}
+.navbar h5{
+  color: #666;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-bottom:0;
+}
+.navbar a:hover{
+  transition: border 0.5s;
+}
+
 .section{
   margin-bottom: 10rem;
 }
