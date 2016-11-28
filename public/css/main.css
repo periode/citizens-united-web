@@ -1,99 +1,163 @@
+
+ h1, h2, h3, h4, h5, h6 {
+   font-family: 'Montserrat', sans-serif;
+   /* Weights: 700 */
+ }
+
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  /* weights: 400, 700*/
   background-color: white;
   color: rgb(20, 20, 20);
 }
 
-h5{
-  font-weight: lighter;
-  color: #666;
+p{
+  margin-bottom: 1.4rem;
 }
 
-p{
-  margin-bottom: 0;
+
+a{
+  color: rgb(150, 0, 0);
+  text-decoration: none;
+  border: 0;
+  border-style: inset;
+}
+
+a:hover{
+  color: rgb(180, 30, 30);
+  border-bottom: 4px solid rgb(150, 0, 0);
+  border-style: inset;
 }
 
 hr{
-  height: 1px;
-  border: 2px solid black;
+  border-top: 12px solid lightGrey;
   background-color: white;
+}
+
+.navbar{
+  z-index: 900;
+  top: 0;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  background-color: #eee;
+  margin: 0 0 3rem 0;
+}
+.navbar h1{
+  color: black;
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom:0;
+}
+.navbar h5{
+  color: #666;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-bottom:0;
+}
+.navbar a:hover{
+  transition: border 0.5s;
+}
+
+.section{
+  margin-bottom: 10rem;
 }
 
 .header{
   margin-top: 5%;
 }
 
+#header h1{
+  margin-bottom: 0;
+}
+#header h5 {
+  font-size: 1.63rem;
+  font-weight: 400;
+  color: #CF3636;
+  text-transform: uppercase;
+}
+
 .top{
   font-size: 16px;
   background-color: black;
   color: white;
+  padding: 1rem 2rem;
   text-decoration: none;
   float: right;
+  -webkit-transition: background-color 0.5s; /* Safari */
+  transition: background-color 0.5s;
 }
 
 .top:hover{
-
   color: black;
-  background-color: white;
+  background-color: #CCC;
+  border:0;
 }
 
-.dissent{
-  padding-left: 10%;
-  padding-right: 10%;
-  color: #444;
-  font-style: italic;
-  font-size: 1em;
-  line-height: 2em;
-  font-weight: lighter;
+.top a:hover{
+  text-decoration: none;
+  border-bottom: 0;
 }
+
 
 .description{
   font-size: 1.25em;
   line-height: 2em;
 }
 
+.navigation{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .navigation a{
-  font-size: 1.5em;
+  color: white;
+  background-color: black;
+  width: 100%;
+  font-size: 1.2em;
   float: left;
   text-align: left;
+  display: block;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.4rem;
+  -webkit-transition: background-color 0.5s; /* Safari */
+  transition: background-color 0.5s;
+  border: 0;
+}
+
+.navigation a:hover{
+  background-color: #CF3636;
+  /*color: rgb(20, 20, 20);*/
+  text-align: left;
+  border: 0;
 }
 
 .navigationlink{
   background-color: black;
-  text-align: center;
-}
-
-.navigationlink a{
-  padding-left: 1%;
-  padding-right: 1%;
   color: white;
 }
 
-.navigationlink a:hover{
-  background-color: white;
-  color: rgb(20, 20, 20);
+.dissent{
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #444;
 }
 
-a{
-  color: rgb(150, 0, 0);
+.quote{
+  font-size: 2.6rem;
+  line-height: 1.3;
+  margin-top: 1.6rem;
+  font-style: italic;
 }
 
-a:hover{
-  color: black;
+.source{
+
 }
 
 .main{
   text-align: justify;
 }
 
-.main .row{
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
 
-.title{
-  margin-bottom: 2%;
-}
 
 #projects{
   margin: 0;
@@ -103,13 +167,39 @@ a:hover{
 
 .project{
   margin-top: 1%;
+  margin-bottom: 4rem;
+  padding: 2rem;
   min-height: 20%;
   /*background-color: rgb(250, 250, 250);*/
-  padding: 10px;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border-left: 12px solid #eee;
+}
+.project h4{
+  margin-bottom: 0.2rem;
+}
+.project h5{
+  font-size: 1.35rem;
+  margin-bottom: 2rem;
+}
+.project p{
+  margin-bottom: 2rem;
+}
+.under-construction{
+  font-style: italic;
+  color: #aaa;
 }
 
 #about{
   font-size: 0.8em;
+}
+
+#about h5 {
+  margin-right: 30%;
+}
+
+#about .pullquote{
+  font-size: 2.1rem;
+  color: #666;
+  line-height: 1.3;
+  margin: 2rem 20% 2rem 3%;
+  font-style: italic;
 }
