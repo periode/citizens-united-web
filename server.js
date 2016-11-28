@@ -158,36 +158,37 @@ function updateInfo(){
   };
 
   request(options, function(error, response, body){
-    if(error)
+    if(error){
       console.log(error);
+    }else{
+      var members = JSON.parse(body).objects;
+      var c = {
+        members: []
+      }
 
-    var members = JSON.parse(body).objects;
-    var c = {
-      members: []
-    }
+      for(var i = 0; i < members.length; i++){
 
-    for(var i = 0; i < members.length; i++){
+        if(members[i].phone != null){
+            var _phone = members[i].phone.toString().replace(/-/g,'');
 
-      if(members[i].phone != null){
-          var _phone = members[i].phone.toString().replace(/-/g,'');
+            var member = {
+              name: members[i].person.firstname + ' ' + members[i].person.lastname,
+              state : members[i].state,
+              party : members[i].party[0],
+              phone : _phone
+            }
 
-          var member = {
-            name: members[i].person.firstname + ' ' + members[i].person.lastname,
-            state : members[i].state,
-            party : members[i].party[0],
-            phone : _phone
+            c.members.push(member);
           }
-
-          c.members.push(member);
         }
-      }
 
-    fs.writeFile('public/data/congress.json', JSON.stringify(c), function(err){
-      if(err)
-        throw err;
-      else{
-        console.log('updated congress database -',c.members.length,'members');
-      }
-    });
+      fs.writeFile('public/data/congress.json', JSON.stringify(c), function(err){
+        if(err)
+          throw err;
+        else{
+          console.log('updated congress database -',c.members.length,'members');
+        }
+      });
+    }
   });
 }
