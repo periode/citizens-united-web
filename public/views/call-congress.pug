@@ -3,7 +3,7 @@ html(lang='en')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title call congress
+    title call congress - citizens united
     link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
     link(href='../css/skeleton/normalize.css' rel='stylesheet')
     link(href='../css/skeleton/skeleton.css' rel='stylesheet')
@@ -11,50 +11,49 @@ html(lang='en')
     link(href='../css/call.css' rel='stylesheet')
     script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
     script(type="text/javascript" src="../js/congress_parser.js")
+    script(type="text/javascript" src="../js/congress_caller.js")
   body(onload="init()")
     div.navbar
       a(href='/')
         h1 CITIZENS-UNITED
-        h5 A suite of software tools for political protest
+        h5 A suite of software tools for political action
     div.section(id="callCongress")
       div.container
         div.row
-            if !done
-              div(class="twelve columns instructions")
-                h3 Call Your Senator
-                h5 This tool sets up a phone call between you and any member of Congress. Select your state to find legislators who represent you directly.
+          div(class="twelve columns instructions")
+            h3 Call Your Senator
+            h5 This tool sets up a phone call between you and any member of Congress. Select your state to find legislators who represent you directly.
+            br
+          div(class='form')
+            div(class='five columns caller')
+              div#form
+                h6 1. Your phone number
+                input(type='text', id='phoneNumber', placeholder='e.g. 123456789', value='' name='requester')
                 br
-              div(class='form')
-                div(class='five columns caller')
-                  form(role='form' action='/initiate-call', method="POST")
-                    h6 1. Your phone number
-                    input(type='text', id='phoneNumber', placeholder='e.g. 123456789', value='' name='requester')
-                    br
-                    br
-                    h6 2. Your State
-                    select(id="states-list" name="state")
-                    br
-                    br
-                    h6 3. Select Your Representative
-                    select(id='contacts-list' name='representative')
-                    br
-                    br
-                    button(type='submit', class='btn btn-default') Put us in touch
-                div(class='guide seven columns')
-                  h4 What to say?
-                  p You will most likely be answered to by a member of your representative's staff. She/he is probably an intern, or recent college graduate. Her/his job is to tally up all the calls per day and deliver a report to the senator the next day.
-                  br
-                  p Clearly state the issue you are calling about (for example: <i>"Hello. I am calling about the need to stop the construction of the Dakota Access Pipeline"</i>).
-                  br
-                  p It is also helps to give your name and your address, as proof of the fact that you are a constituent of North Dakota, whose concerns have priority over those of non-consituents).
-            else
-              div(class="section twelve columns")
-                h3 Thank you for calling!
-                h5
-                  a(href="/call") Call Again »
+                br
+                h6 2. Your State
+                select(id="states-list" name="state")
+                br
+                br
+                h6 3. Select Your Representative
+                select(id='contacts-list' name='representative')
+                br
+                br
+                button(onclick='startCall()', class='btn btn-default') Put us in touch
+              div#status
+            div(class='guide seven columns')
+              h4 What to say?
+              p You will most likely be answered to by a member of your representative's staff. She/he is probably an intern, or recent college graduate. Her/his job is to tally up all the calls per day and deliver a report to the senator the next day.
+              br
+              p Clearly state the issue you are calling about (for example: <i>"Hello. I am calling about to express my concern about X."</i>).
+              br
+              p It is also helps to give your name and your address, as proof of the fact that you are a constituent of North Dakota, whose concerns have priority over those of non-consituents).
 
 
             // comments on call quality
+            // share with friends
+            // add .vcf cards
+            // have phone number that is a clickable link
     div.section
       div.container
         div.row

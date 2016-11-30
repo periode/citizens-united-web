@@ -24,7 +24,6 @@ function init(){
     }
 
     states.onchange = function(){
-      console.log(this.value);
       populateList(this.value);
     };
 

@@ -24,6 +24,15 @@ ol li{
   margin-bottom: 0.5rem;
 }
 
+#status{
+  font-size: 1.4em;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+}
 
 .caller{
   text-align: left;

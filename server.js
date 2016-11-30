@@ -12,6 +12,7 @@ var querystring = require('querystring');
 //--- ROUTES
 var api = require('./routes/api');
 var call = require('./routes/call');
+var newsletter = require('./routes/newsletter');
 
 var app = express();
 var port = 80;
@@ -42,6 +43,9 @@ app.get('/', function(req, res, err){
 app.get('/call', call.landing);
 app.post('/initiate-call', call.initiate_call);
 app.post('/broker-call', call.broker_call);
+
+//--- NEWSLETTER
+app.get('/newsletter', newsletter.landing);
 
 //--- API
 app.get('/get-congress', api.get_all_congress);
