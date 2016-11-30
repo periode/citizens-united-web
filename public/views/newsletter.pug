@@ -7,15 +7,42 @@ html(lang='en')
     link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
     link(href='../css/skeleton/normalize.css' rel='stylesheet')
     link(href='../css/skeleton/skeleton.css' rel='stylesheet')
+    link(href='../css/main.css' rel='stylesheet')
     link(href='../css/newsletter.css' rel='stylesheet')
+    script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+    script(type="text/javascript" src="../js/congress_bills.js")
   body(onload="init()")
     div.navbar
       a(href='/')
         h1 CITIZENS-UNITED
         h5 A suite of software tools for political action
-      div.section(id="newsletterCongress")
-        div.container
-          div.row
+    div.section(id="newsletterCongress")
+      div.container
+        div.row
+          div(class="twelve columns instructions")
+            h3 Congress Newsletter
+            h5 This tool allows you to subscribe to updates regarding bills currently discussed in Congress.
+            br
+          div(class='form')
+            div(class='five columns caller')
+              div#form
+                h6 1. Your e-mail address
+                input(type='email', id='email', placeholder='you@life.org', value='' name='email')
+                br
+                br
+                h6 2. Your Preferences
+                div todo
+                select(id="states-list")
+                br
+                select(id="representatives")
+                br
+                br
+                h6 3. Select Your Representative
+                div todo
+                br
+                br
+                button(onclick='subscribe()', class='btn btn-default') Subscribe to the newsletter
+              div#status
       div.section
         div.container
           div.row
