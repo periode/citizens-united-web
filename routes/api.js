@@ -101,13 +101,16 @@ exports.add_new_subscriber = function(req, res, err){
 
     var message = {thanks: 'thanks, '+new_subscriber.name+', you have been successfully subscribed!'};
 
-    res.render('email-landing.pug', message);
+    res.writeHead(200);
+    res.write('created');
     res.end();
   }else{
+    console.log('already found subscriber');
     var st = 'we\'ve already found an address matching, '+new_subscriber.email+'!';
     var message = {thanks: st};
 
-    res.render('email-landing.pug', message);
+    res.writeHead(200);
+    res.write('found');
     res.end();
   }
 }

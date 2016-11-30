@@ -10,6 +10,7 @@ html(lang='en')
     link(href='../css/main.css' rel='stylesheet')
     link(href='../css/main_mobile.css' rel='stylesheet')
     script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+    script(src="../js/api/newsletter.js")
   body
     div(class='section header')
       div.container
@@ -74,10 +75,12 @@ html(lang='en')
         h4 Contact
         p If you are interested in updates, sign up here:
         br
-        form(action="/email-subscription" method="POST")
-          input(type="text" name="name" placeholder="you")
+        div
+          input(type="text" id="name" placeholder="you" value="")
           br
-          input(type="email" name="email" placeholder="you@life.com")
+          input(type="email" id="email" placeholder="you@life.com" value="")
           br
-          button(type="submit") submit
+          button(onclick="subscribe()") submit
+          div#status
+          br
         p If you want to contact me directly, you can do so at this <a href="mailto:pierre.depaz@gmail.com">e-mail</a> address.
