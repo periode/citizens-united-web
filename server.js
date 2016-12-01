@@ -50,5 +50,9 @@ app.get('/newsletter', newsletter.landing);
 //--- API
 app.get('/get-congress', api.get_all_congress);
 app.get('/update-congress', api.update_congress);
+
+app.get('/update-bills-schedule', api.update_bills_schedule);
+app.get('/get-bills-schedule', api.get_bills_schedule);
+
 app.post('/email-subscription', api.add_new_subscriber);
 app.get('/subscribers', api.get_all_subscribers);

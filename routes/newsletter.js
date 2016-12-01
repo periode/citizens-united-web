@@ -1,6 +1,5 @@
 // NEWSLETTER
 
-
 //--- RENDER WEBPAGE
 exports.landing = function(req, res, err){
   if(err)
