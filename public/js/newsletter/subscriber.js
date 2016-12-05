@@ -38,9 +38,22 @@ function subscribe(){
     }
   }
 
-  setSuccess('Thank you!<br>We\'ve successfully added <u>'+email+'</u> to the Congress Newsletter.');
+  $.ajax({
+    type: 'POST',
+    url: '/newsletter/new',
+    data: subscriber
+  }).done(function(data){
+    document.getElementById('email').value = "";
+    document.getElementById('name').value = "";
 
-  console.log(subscriber);
+    if(data == "found")
+      setError('Already found a subscription to '+_email+'.');
+    else
+      setSuccess('Thank you!<br>We\'ve successfully added <u>'+email+'</u> to the Congress Newsletter.');
+
+  }).fail(function(data){
+    document.getElementById('status').innerText = "Something seems to have gone wrong... Please check your email address.";
+  });
 }
 
 function setSuccess(msg){

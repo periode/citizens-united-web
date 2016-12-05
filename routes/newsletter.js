@@ -65,8 +65,7 @@ exports.add_new_subscriber = function(req, res, err){
         throw err;
       else{
         console.log('added new subscriber to the congress newsletter');
-        console.log('name',new_subscriber.name);
-        console.log('email',new_subscriber.email);
+        console.log(new_subscriber);
       }
     });
 
