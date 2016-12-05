@@ -3,14 +3,15 @@ html(lang='en')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title congress newsletter - citizens united
+    title Congress Newsletter - citizens united
     link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
     link(href='../css/skeleton/normalize.css' rel='stylesheet')
     link(href='../css/skeleton/skeleton.css' rel='stylesheet')
     link(href='../css/main.css' rel='stylesheet')
     link(href='../css/newsletter.css' rel='stylesheet')
     script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
-    script(type="text/javascript" src="../js/newsletter/congress_bills.js")
+    script(type="text/javascript" src="../js/newsletter/congress_api.js")
+    script(type="text/javascript" src="../js/newsletter/subscriber.js")
   body(onload="init()")
     div.navbar
       a(href='/')
@@ -21,30 +22,43 @@ html(lang='en')
         div.row
           div(class="twelve columns instructions")
             h3 Congress Newsletter
-            h5 This tool allows you to subscribe to updates regarding bills currently discussed in Congress.
-            br
+            h5 A light-weight allows you to subscribe to updates regarding bills currently discussed in the United States Congress.
+            p Select which <a href="https://www.congress.gov/help/field-values/policy-area">areas of interest</a> you are interested in and you will receive, <a href="http://docs.house.gov/floor/">every Friday</a>, a summary of which bills will be discussed the following week by Congress. You can then <a href="/call">call your senator</a> to make sure your opinion is heard.
+            p For a more thorough newsletter, you can use the one offered by <a href="https://www.govtrack.us/congress/bills/#get-alerts">GovTrack</a>, or go <a href="https://congress.gov/account/register">straight to the source</a>.
+            hr
           div(class='form')
-            div(class='five columns caller')
-              div#form
-                h6 1. Your e-mail address
-                input(type='email', id='email', placeholder='you@life.org', value='' name='email')
+            div(class='twelve columns')
+              div(class="eight columns")
+                h5 Your <a href="https://www.congress.gov/help/field-values/policy-area">Areas of Interest</a>
+                div#policy_areas
+                  each area in areas
+                      div(class="areas" id=area onclick="selectArea('"+area+"')")=area
                 br
                 br
-                h6 2. Your Preferences
-                div todo
-                select(id="states-list")
-                br
-                select(id="representatives")
-                br
-                br
-                h6 3. Select Your Representative
-                div todo
-                br
-                br
-                button(onclick='subscribe()', class='btn btn-default') Subscribe to the newsletter
+              div(class="three columns")
+                div#form
+                  div.row
+                    h5 Your name
+                    input(type='text', id='name', placeholder='you', value='')
+                    br
+                    hr
+                  div.row
+                    h5 Your e-mail address
+                    input(type='email', id='email', placeholder='you@life.org', value='')
+                    br
+                    hr
+                  br
+                  div.row
+                    h5 Your State
+                    select(id="state")
+                    br
+              div.row
+                div(class="twelve columns")
+                  button(onclick='subscribe()', class='btn btn-default') Subscribe to the newsletter
+              br
               div#status
       div.section
         div.container
           div.row
             div(class='twelve columns back')
-              a(href="/") Software Tools for Digital Protest by Citizen-United
+              a(href="/") Software Tools for Digital Action by Citizen-United

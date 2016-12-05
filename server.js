@@ -46,6 +46,8 @@ app.post('/broker-call', call.broker_call);
 
 //--- NEWSLETTER
 app.get('/newsletter', newsletter.landing);
+app.get('/newsletter/new', newsletter.add_new_subscriber);
+app.get('/newsletter/get-all', newsletter.get_all_subscribers);
 
 //--- API
 app.get('/get-congress', api.get_all_congress);

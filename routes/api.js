@@ -168,7 +168,7 @@ function get_bill_policy_area(bill){
       });
     }
   });
-}
+};
 
 exports.get_bills_schedule = function(req, res, err){
   if(err)
