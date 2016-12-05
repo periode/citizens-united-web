@@ -1,5 +1,6 @@
 // NEWSLETTER
 var fs = require('fs');
+var mailer = require('nodemailer');
 
 var policy_areas = [
   'All Areas',
@@ -36,6 +37,35 @@ var policy_areas = [
   'Transportation and Public Works',
   'Water Resources Development'
 ];
+
+var smtpConfig = {
+  host: 'smtp.mailgun.org',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'postmaster@sandbox426582edff3249c085152793ef37ba6e.mailgun.org',
+    pass: '78c2cab6d8eeea4f42aad99062903857'
+  }
+};
+
+var transporter = mailer.createTransport(smtpConfig);
+
+function sendMail(note, destination){
+  var mail_content = {
+    from: '"Congress Newsletter" <newsletter@mg.citizens-united.com>',
+    to: 'pierre.depaz@gmail.com',
+    subject: 'a quick reminder',
+    text: '',
+    html: 'hello, world'
+  }
+
+  transporter.sendMail(mail_content, function(err, info){
+    if(err)
+      return console.log(err);
+
+    console.log('mail sent',info.response);
+  });
+}
 
 //--- RENDER WEBPAGE
 exports.landing = function(req, res, err){
