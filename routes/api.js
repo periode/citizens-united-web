@@ -159,7 +159,7 @@ function get_bill_policy_area(bill){
     scheduled_bills.push(bill);
 
     if(scheduled_bills.length == total_bills){
-      fs.writeFile('public/data/newsletter/scheduled_bills_'+week+'.json', JSON.stringify(scheduled_bills), function(err){
+      fs.writeFile('public/data/newsletter/scheduled_bills/'+week+'.json', JSON.stringify(scheduled_bills), function(err){
         if(err){
           throw(err);
         }else{
@@ -178,6 +178,27 @@ exports.get_bills_schedule = function(req, res, err){
   var bills = JSON.parse(fs.readFileSync('public/data/newsletter/'+file));
   res.json(bills);
 }
+
+function get_committees(){
+  var options = {
+    url : 'https://api.propublica.org/congress/v1/114/house/committees.json',
+    headers: {
+      "X-API-Key" : congress_api_key
+    }
+  };
+
+  request(options, function(err, resp, body){
+    if(err)
+      console.log(err);
+
+    var comm = JSON.parse(body).results[0].committees;
+    for(var i = 0; i < comm.length; i++){
+      console.log(comm[i].name);
+    }
+  });
+}
+
+// get_committees();
 
 
 

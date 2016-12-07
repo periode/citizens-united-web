@@ -8,18 +8,40 @@ function selectArea(area){
     el.setAttribute('class', 'areas');
 }
 
+function selectCommittee(comm){
+  var el = document.getElementById(comm)
+  var state = el.getAttribute('class');
+
+  if(state == 'committees')
+    el.setAttribute('class', 'committees selected');
+  else
+    el.setAttribute('class', 'committees');
+}
+
 
 function subscribe(){
-  var selected = document.getElementsByClassName('selected');
+  var selected_areas = document.getElementsByClassName('areas selected');
   var areas = [];
-  for(var i = 0; i < selected.length; i++){
-    areas.push(selected[i].innerText);
+  for(var i = 0; i < selected_areas.length; i++){
+    areas.push(selected_areas[i].innerText.replace("'", "&#39;"));
 
-    if(selected[i].innerText == 'All Areas'){
+    if(selected_areas[i].innerText == 'All Areas'){
       areas = "All Areas";
       break;
     }
   }
+
+  var selected_committees = document.getElementsByClassName('committees selected');
+  var committees = [];
+  for(var i = 0; i < selected_committees.length; i++){
+    committees.push(selected_committees[i].innerText.replace("'", "&#39;"));
+
+    if(selected_committees[i].innerText == 'All Committees'){
+      selected_committees = "All Committees";
+      break;
+    }
+  }
+
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
   var state = document.getElementById('state').value;
@@ -28,7 +50,8 @@ function subscribe(){
     name: name,
     email: email,
     state: state,
-    areas: areas
+    areas: areas,
+    committees: committees
   };
 
   for(var field in subscriber){
@@ -64,4 +87,21 @@ function setSuccess(msg){
 function setError(err){
   document.getElementById('status').innerHTML = err;
   document.getElementById('status').setAttribute('class', 'error');
+}
+
+
+function switchDisplay(){
+  if(document.getElementById('policy_areas').style.display != 'none'){
+    document.getElementById('policy_areas_header').setAttribute('class', 'six columns background');
+    document.getElementById('committees_header').setAttribute('class', 'six columns foreground');
+
+    document.getElementById('policy_areas').setAttribute('style', 'display: none');
+    document.getElementById('committees').setAttribute('style', 'display: table');
+  }else{
+    document.getElementById('policy_areas_header').setAttribute('class', 'six columns foreground');
+    document.getElementById('committees_header').setAttribute('class', 'six columns background');
+
+    document.getElementById('policy_areas').setAttribute('style', 'display: table');
+    document.getElementById('committees').setAttribute('style', 'display: none');
+  }
 }

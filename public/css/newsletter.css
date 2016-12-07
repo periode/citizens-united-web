@@ -18,7 +18,30 @@
   display: table;
 }
 
-.areas{
+#committees{
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.foreground{
+  background-color: black;
+  color: white;
+  cursor:default;
+  border-bottom: 2px solid white;
+}
+
+.background{
+  background-color: white;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.background:hover{
+  border-bottom: 2px #aaa solid;
+}
+
+.areas, .committees{
   display: table-cell;
   float: left;
   padding: 5px;
@@ -29,7 +52,7 @@
   cursor: pointer;
 }
 
-.areas:hover{
+.areas:hover, .committees:hover{
   background-color: #eee;
 }
 

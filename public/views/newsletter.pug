@@ -23,16 +23,21 @@ html(lang='en')
           div(class="twelve columns instructions")
             h3 Congress Newsletter
             h5 A light-weight allows you to subscribe to updates regarding bills currently discussed in the United States Congress.
-            p Select which <a href="https://www.congress.gov/help/field-values/policy-area">areas of interest</a> you are interested in and you will receive, <a href="http://docs.house.gov/floor/">every Friday</a>, a summary of which bills will be discussed the following week by Congress. You can then <a href="/call">call your senator</a> to make sure your opinion is heard.
-            p For a more thorough newsletter, you can use the one offered by <a href="https://www.govtrack.us/congress/bills/#get-alerts">GovTrack</a>, or go <a href="https://congress.gov/account/register">straight to the source</a>.
+            p Select which <a href="https://www.congress.gov/help/field-values/policy-area">areas of interest</a> and which <a href="http://www.house.gov/committees/">committees</a> you are interested in (policy areas encompass multiple committees).
+            p You will receive, <a href="http://docs.house.gov/floor/">every Friday</a>, a summary of which bills will be discussed the following week by Congress. You can then <a href="/call">call your representative</a> to make sure your opinion is heard.
+            p For a more thorough alerting service, you can use the one offered by <a href="https://www.govtrack.us/congress/bills/#get-alerts">GovTrack</a>, or go <a href="https://congress.gov/account/register">straight to the source</a>.
             hr
           div(class='form')
             div(class='twelve columns')
               div(class="eight columns")
-                h5 Your <a href="https://www.congress.gov/help/field-values/policy-area">Areas of Interest</a>
+                h5(class="six columns foreground" id="policy_areas_header" onclick="switchDisplay()") Your Areas of Interest <a href="https://www.congress.gov/help/field-values/policy-area">*</a>
+                h5(class="six columns background" id="committees_header" onclick="switchDisplay()") Your Committees <a href="http://www.house.gov/committees/">*</a>
                 div#policy_areas
                   each area in areas
-                      div(class="areas" id=area onclick="selectArea('"+area+"')")=area
+                      div(class="areas" id=area onclick='selectArea("'+area+'")')=area
+                div#committees
+                  each committee in committees
+                      div(class="committees" id=committee onclick='selectCommittee("'+committee+'")')=committee
                 br
                 br
               div(class="three columns")
@@ -42,6 +47,7 @@ html(lang='en')
                     input(type='text', id='name', placeholder='you', value='')
                     br
                     hr
+                  br
                   div.row
                     h5 Your e-mail address
                     input(type='email', id='email', placeholder='you@life.org', value='')

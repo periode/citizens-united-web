@@ -2,6 +2,21 @@
 var fs = require('fs');
 var mailer = require('nodemailer');
 
+var months = {
+  'jan':0,
+  'feb':1,
+  'mar':2,
+  'apr':3,
+  'may':4,
+  'jun':5,
+  'jul':6,
+  'aug':7,
+  'sep':8,
+  'oct':9,
+  'nov':10,
+  'dec':11
+};
+
 var policy_areas = [
   'All Areas',
   'Agriculture and Food',
@@ -38,25 +53,55 @@ var policy_areas = [
   'Water Resources Development'
 ];
 
+
+var committees = [
+  'All Committees',
+  'Administration',
+  'Agriculture',
+  'Appropriations',
+  'Armed Services',
+  'Education and the Workforce',
+  'Energy and Commerce',
+  'Financial Services',
+  'Foreign Affairs',
+  'Homeland Security',
+  'Natural Resources',
+  'Oversight and Government Reform',
+  'Rules',
+  'Science, Space, and Technology',
+  'Small Business',
+  'Standards of Official Conduct',
+  'Budget',
+  'Judiciary',
+  'Transportation and Infrastructure',
+  'Veterans\' Affairs',
+  'Ways and Means',
+  'Permanent Select Committee On Intelligence',
+  'Select Committee On Benghazi',
+];
+
+var mg_user = 'postmaster@mg.citizens-united.com';
+var mg_pass = '4b3d4d464b3fed0f5e14a514f42ea2d7';
+
 var smtpConfig = {
   host: 'smtp.mailgun.org',
   port: 465,
   secure: true,
   auth: {
-    user: 'postmaster@sandbox426582edff3249c085152793ef37ba6e.mailgun.org',
-    pass: '78c2cab6d8eeea4f42aad99062903857'
+    user: mg_user,
+    pass: mg_pass
   }
 };
 
 var transporter = mailer.createTransport(smtpConfig);
 
-function sendMail(note, destination){
+function sendNewsletter(date, text, recipient){
   var mail_content = {
-    from: '"Congress Newsletter" <newsletter@mg.citizens-united.com>',
+    from: '"Congress Newsletter" <postmaster@mg.citizens-united.com>',
     to: 'pierre.depaz@gmail.com',
-    subject: 'a quick reminder',
-    text: '',
-    html: 'hello, world'
+    subject: 'Congress Newsletter - '+date,
+    text: 'hello',
+    html: '<u>world</u>'
   }
 
   transporter.sendMail(mail_content, function(err, info){
@@ -72,7 +117,7 @@ exports.landing = function(req, res, err){
   if(err)
     console.log(err);
 
-  res.render('newsletter.pug', {areas : policy_areas});
+  res.render('newsletter.pug', {areas : policy_areas, committees: committees});
 }
 
 exports.add_new_subscriber = function(req, res, err){
@@ -120,3 +165,82 @@ exports.get_all_subscribers = function(req, res, err){
 
   res.json(obj);
 };
+
+
+//SENDING OUT NEWSLETTER
+function setupNewsletter(){
+  var all_subscribers = JSON.parse(fs.readFileSync('public/data/newsletter/subscribers.json')).all_subscribers;
+  var path = pickMostRecentBill(fs.readdirSync('public/data/newsletter/scheduled_bills'));
+  var upcoming_schedule = JSON.parse(fs.readFileSync('public/data/newsletter/scheduled_bills/'+path));
+
+  for(var i = 0; i < all_subscribers.length; i++){
+    var parcel = {
+      recipient: all_subscribers[i],
+      bills: []
+    };
+
+    //tagged all areas, just push the whole thing
+    if(parcel.recipient.areas == "All Areas"){
+      parcel.bills = upcoming_schedule;
+    }else{
+      //go through one upcoming area at a time
+      for(var j = 0; j < upcoming_schedule.length; j++){
+        var upcoming_area = upcoming_schedule[j].policy_area;
+        var upcoming_committees = upcoming_schedule[j].committees;
+
+        //compare with all the registered areas
+        for(var k = 0; k < parcel.recipient.areas.length; k++){
+          if(parcel.recipient.areas[k] == upcoming_area){
+            parcel.bills.push(upcoming_schedule[j]);
+            break
+          }
+        }
+
+        //compare with all the registered committees and make sure you don't duplicate
+        for(var k = 0; k < parcel.recipient.committees.length; k++){
+          if(upcoming_committees.indexOf(parcel.recipient.committees[k]) > -1
+            && parcel.bills[parcel.bills-1] != upcoming_schedule[j]){
+            parcel.bills.push(upcoming_schedule[j]);
+            break;
+          }
+        }
+      }
+    }
+
+    if(parcel.bills.length != 0)
+      formatNewsletter(parcel);
+  }
+}
+
+function formatNewsletter(_parcel){
+  console.log(_parcel);
+}
+
+setupNewsletter();
+
+function pickMostRecentBill(bills){
+  var most_recent = '';
+  var most_recent_year = 0;
+  var most_recent_month = 0;
+  var most_recent_day = 0;
+
+  for(var i = 0; i < bills.length; i++){
+    var y = parseInt(bills[i].substring(15, 19));
+    var m = bills[i].substring(8, 11);
+    var d = parseInt(bills[i].substring(12, 14));
+
+    if(y >= most_recent_year){
+      if(months[m] >= most_recent_month){
+        if(d >= most_recent_day){
+          most_recent = bills[i];
+
+          most_recent_year = y;
+          most_recent_month = m;
+          most_recent_day = d;
+        }
+      }
+    }
+  }
+
+  return most_recent;
+}
