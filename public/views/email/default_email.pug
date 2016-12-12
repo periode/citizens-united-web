@@ -1,0 +1,12 @@
+h1(style="background-color: black; color: white;") Congress Newsletter
+p(style="font-style: italic;") <a href="http://pierredepaz.net">unsubscribe?</a>
+br
+h5(style="text-align: center;") Remember that the most effective way to affect any of these bills is to <a href="http://citizens-united.com/call">call your representative</a>.
+hr
+hr
+each bill in bills
+  h4(style="")=bill.title
+  p=bill.committees
+  a(href=bill.link) full text (pdf)
+  hr
+p thanks!

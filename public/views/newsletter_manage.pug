@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Congress Newsletter - citizens united
+    link(href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet')
+    link(href='../css/skeleton/normalize.css' rel='stylesheet')
+    link(href='../css/skeleton/skeleton.css' rel='stylesheet')
+    link(href='../css/main.css' rel='stylesheet')
+    link(href='../css/newsletter.css' rel='stylesheet')
+    script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+    script(type="text/javascript" src="../js/newsletter/manager.js")
+  body
+    div.navbar
+      a(href='/')
+        h1 CITIZENS-UNITED
+        h5 A suite of software tools for political action
+    div.section(id="newsletterCongress")
+      div.container
+        div.row
+          div(class="twelve columns instructions")
+            h3 Please enter your email address:
+            input(id="email" type="email")
+            br
+            button(onclick="submit()") Unsubscribe
+            br
+            div(id="status")

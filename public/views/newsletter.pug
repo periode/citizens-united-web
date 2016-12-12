@@ -30,14 +30,14 @@ html(lang='en')
           div(class='form')
             div(class='twelve columns')
               div(class="eight columns")
-                h5(class="six columns foreground" id="policy_areas_header" onclick="switchDisplay()") Your Areas of Interest <a href="https://www.congress.gov/help/field-values/policy-area">*</a>
-                h5(class="six columns background" id="committees_header" onclick="switchDisplay()") Your Committees <a href="http://www.house.gov/committees/">*</a>
-                div#policy_areas
-                  each area in areas
-                      div(class="areas" id=area onclick='selectArea("'+area+'")')=area
+                h5(class="six columns foreground" id="committees_header" onclick="switchDisplay()") Your Committees <a href="http://www.house.gov/committees/">*</a>
+                h5(class="six columns background" id="policy_areas_header" onclick="switchDisplay()") Your Areas of Interest <a href="https://www.congress.gov/help/field-values/policy-area">*</a>
                 div#committees
                   each committee in committees
                       div(class="committees" id=committee onclick='selectCommittee("'+committee+'")')=committee
+                div#policy_areas
+                  each area in areas
+                      div(class="areas" id=area onclick='selectArea("'+area+'")')=area
                 br
                 br
               div(class="three columns")

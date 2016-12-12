@@ -15,13 +15,13 @@
 #policy_areas{
   width: 100%;
   height: 100%;
-  display: table;
+  display: none;
 }
 
 #committees{
   width: 100%;
   height: 100%;
-  display: none;
+  display: table;
 }
 
 .foreground{

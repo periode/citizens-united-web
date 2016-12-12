@@ -9,7 +9,7 @@ function init(){
     var states = document.getElementById("state");
 
     var all = document.createElement('option');
-    all.innerText = 'ANY';
+    all.innerText = 'N/A';
     all.setAttribute('value', 'all');
     states.append(all);
 

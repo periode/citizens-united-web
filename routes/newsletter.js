@@ -1,6 +1,7 @@
 // NEWSLETTER
 var fs = require('fs');
 var mailer = require('nodemailer');
+var pug = require('pug');
 
 var months = {
   'jan':0,
@@ -95,13 +96,14 @@ var smtpConfig = {
 
 var transporter = mailer.createTransport(smtpConfig);
 
-function sendNewsletter(date, text, recipient){
+function sendMail(html, text, recipient){
+
   var mail_content = {
     from: '"Congress Newsletter" <postmaster@mg.citizens-united.com>',
-    to: 'pierre.depaz@gmail.com',
-    subject: 'Congress Newsletter - '+date,
+    to: recipient,
+    subject: 'Congress Newsletter - '+getCurrentDate(),
     text: 'hello',
-    html: '<u>world</u>'
+    html: html
   }
 
   transporter.sendMail(mail_content, function(err, info){
@@ -166,6 +168,21 @@ exports.get_all_subscribers = function(req, res, err){
   res.json(obj);
 };
 
+exports.remove_subscriber = function(req, res, err){
+  var to_remove = req.body;
+
+  var obj = JSON.parse(fs.readFileSync('public/data/newsletter/subscribers.json'));
+
+  for(var i = 0; i < obj.all_subscribers.length; i++){
+    if(obj.all_subscribers[i].email == to_remove){
+      obj.all_subscribers.splice(i, 1);
+      res.send('success');
+    }
+  }
+
+  res.send('not found');
+}
+
 
 //SENDING OUT NEWSLETTER
 function setupNewsletter(){
@@ -180,7 +197,7 @@ function setupNewsletter(){
     };
 
     //tagged all areas, just push the whole thing
-    if(parcel.recipient.areas == "All Areas"){
+    if(parcel.recipient.committees == "All Committees"){
       parcel.bills = upcoming_schedule;
     }else{
       //go through one upcoming area at a time
@@ -213,10 +230,25 @@ function setupNewsletter(){
 }
 
 function formatNewsletter(_parcel){
+
   console.log(_parcel);
+
+  var content = {bills: _parcel.bills, date: getCurrentDate()};
+
+  var fn = pug.compileFile('public/views/email/default_email.pug');
+  var html = fn(content);
+
+  sendMail(html, 'hey', 'pierre.depaz@gmail.com');
 }
 
 setupNewsletter();
+
+function getCurrentDate(){
+  var date = new Date();
+  var timestamp = date.getDate()+'/'+(date.getMonth()+1);
+
+  return timestamp;
+}
 
 function pickMostRecentBill(bills){
   var most_recent = '';

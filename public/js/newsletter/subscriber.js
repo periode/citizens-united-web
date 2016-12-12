@@ -91,7 +91,7 @@ function setError(err){
 
 
 function switchDisplay(){
-  if(document.getElementById('policy_areas').style.display != 'none'){
+  if(document.getElementById('committees').style.display == 'none'){
     document.getElementById('policy_areas_header').setAttribute('class', 'six columns background');
     document.getElementById('committees_header').setAttribute('class', 'six columns foreground');
 

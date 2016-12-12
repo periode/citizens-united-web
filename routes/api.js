@@ -142,6 +142,8 @@ function get_bill_policy_area(bill){
       console.log(err);
 
     var $ = cheerio.load(body);
+
+    //scrape to find value
     var flag = false;
     var policy_area = 'unspecified';
     $('.tertiary_section').each(function(){
