@@ -1,5 +1,5 @@
 function submit(){
-  var _email = document.getElementById('address').value;
+  var _email = document.getElementById('email').value;
 
   $.ajax({
     type: 'POST',
@@ -11,7 +11,7 @@ function submit(){
     if(data == "not found")
       setError('No such email address in our contact book (<u>'+_email+'</u>).');
     else if(data == "success")
-      setSuccess('Oh well...<br>We\'ve successfully removed <u>'+email+'</u> from the Congress Newsletter.');
+      setSuccess('Oh well...<br>We\'ve successfully removed <u>'+_email+'</u> from the Congress Newsletter.');
 
   }).fail(function(data){
     document.getElementById('status').innerText = "Something seems to have gone wrong... Please check your email address.";

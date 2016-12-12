@@ -122,6 +122,13 @@ exports.landing = function(req, res, err){
   res.render('newsletter.pug', {areas : policy_areas, committees: committees});
 }
 
+exports.manage = function(req, res, err){
+  if(err)
+    console.log(err);
+
+  res.render('newsletter_manage.pug');
+}
+
 exports.add_new_subscriber = function(req, res, err){
   var new_subscriber = req.body;
 
@@ -169,18 +176,29 @@ exports.get_all_subscribers = function(req, res, err){
 };
 
 exports.remove_subscriber = function(req, res, err){
-  var to_remove = req.body;
-
+  var to_remove = req.body.email;
   var obj = JSON.parse(fs.readFileSync('public/data/newsletter/subscribers.json'));
 
+  var success = false;
   for(var i = 0; i < obj.all_subscribers.length; i++){
     if(obj.all_subscribers[i].email == to_remove){
       obj.all_subscribers.splice(i, 1);
-      res.send('success');
+      success = true;
     }
   }
 
-  res.send('not found');
+  if(success){
+    fs.writeFile('public/data/newsletter/subscribers.json', JSON.stringify(obj), function(err){
+      if(err)
+        throw err;
+      else{
+        console.log('removed',to_remove);
+        res.send("success");
+      }
+    });
+  }else{
+    res.send("not found");
+  }
 }
 
 
@@ -230,15 +248,12 @@ function setupNewsletter(){
 }
 
 function formatNewsletter(_parcel){
-
-  console.log(_parcel);
-
   var content = {bills: _parcel.bills, date: getCurrentDate()};
 
   var fn = pug.compileFile('public/views/email/default_email.pug');
   var html = fn(content);
 
-  sendMail(html, 'hey', 'pierre.depaz@gmail.com');
+  // sendMail(html, 'hey', _parcel.recipient.email);
 }
 
 setupNewsletter();

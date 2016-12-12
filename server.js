@@ -48,7 +48,8 @@ app.post('/broker-call', call.broker_call);
 app.get('/newsletter', newsletter.landing);
 app.post('/newsletter/new', newsletter.add_new_subscriber);
 app.get('/newsletter/get-all', newsletter.get_all_subscribers);
-app.get('/newsletter/unsubscribe', newsletter.remove_subscriber);
+app.get('/newsletter/manage', newsletter.manage);
+app.post('/newsletter/unsubscribe', newsletter.remove_subscriber);
 
 //--- API
 app.get('/get-congress', api.get_all_congress);
