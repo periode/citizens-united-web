@@ -69,7 +69,11 @@ var scheduled_bills = [];
 var total_bills = 0;
 var week = '';
 
-exports.update_bills_schedule = function(){
+exports.update_bills_schedule = function(req, res, err){
+  if(err)
+    console.log(err);
+
+
   request(house_url, function(err, resp, body){
     if(err)
       console.log(err);
@@ -106,6 +110,8 @@ exports.update_bills_schedule = function(){
       }
     });
   });
+
+  res.send('updating bills schedule');
 }
 
 function get_bills_subject(bill){
@@ -148,7 +154,7 @@ function get_bill_policy_area(bill){
     var policy_area = 'unspecified';
     $('.tertiary_section').each(function(){
       var els = $(this).find('.plain').find('li');
-      if(flag){
+      if(flag && els[0] != null){
         policy_area = els[0].children[0].data;
         return;
       }
