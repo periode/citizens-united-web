@@ -60,12 +60,16 @@ ol li{
 
 #callCongress button, #callCongress .button {
   height: 6rem;
+  color: black;
   background-color: white;
+  border: 1px solid black;
   -webkit-transition: background-color 0.5s; /* Safari */
   transition: background-color 0.5s;
 }
 
 #callCongress button:hover, #callCongress .button:hover {
   height: 6rem;
+  color: white;
   background-color: green;
+  border: 1px solid white;
 }
